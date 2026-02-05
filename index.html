@@ -4,23 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WB: реклама есть — прибыли нет (практический гайд)</title>
-  <meta name="description" content="Практический гайд по внутренней рекламе Wildberries: диагностика по воронке, действия по шагам, тесты, экономика с выкупом, шаблоны." />
+  <meta name="description" content="Практический гайд по внутренней рекламе Wildberries: диагностика по воронке, действия по шагам, тесты, экономика с выкупом, шаблоны и калькулятор цены заказа." />
+
   <style>
     :root{
       --bg:#0B0812;
       --glass: rgba(14,10,22,.58);
       --card: rgba(18,13,30,.78);
       --card2: rgba(12,9,20,.52);
-      --line: rgba(167,139,250,.16);
       --line2: rgba(199,185,255,.12);
       --text:#F5F6FA;
       --muted: rgba(199,185,255,.86);
       --muted2: rgba(199,185,255,.70);
       --accent:#7C3AED;
       --accent2:#A78BFA;
-      --ok: rgba(34,197,94,.95);
-      --warn: rgba(245,158,11,.95);
-      --bad: rgba(239,68,68,.95);
       --shadow: 0 18px 46px rgba(0,0,0,.42);
       --r: 18px;
       --r2: 14px;
@@ -38,7 +35,7 @@
         radial-gradient(900px 650px at 92% 6%, rgba(167,139,250,.16), transparent 55%),
         linear-gradient(180deg, #07050D 0%, #0B0812 40%, #0B0812 100%);
     }
-    a{color:inherit;text-decoration:none}
+    a{color:inherit}
     .wrap{max-width:var(--max);margin:0 auto;padding:20px 16px 72px}
     .top{
       position:sticky;top:0;z-index:20;
@@ -112,10 +109,7 @@
       filter: blur(2px);
       pointer-events:none;
     }
-    .kickers{
-      display:flex;gap:8px;flex-wrap:wrap;
-      margin-bottom:12px;
-    }
+    .kickers{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
     .chip{
       font-size:12px;
       color: var(--muted);
@@ -124,26 +118,10 @@
       border:1px solid var(--line2);
       background: rgba(11,8,18,.28);
     }
-    h1{
-      margin:6px 0 10px;
-      font-size:30px;
-      line-height:1.18;
-      letter-spacing:-.2px;
-    }
-    .lead{
-      margin:0;
-      color: var(--muted);
-      line-height: var(--lh);
-      max-width: 980px;
-      font-size: 14.7px;
-    }
+    h1{margin:6px 0 10px;font-size:30px;line-height:1.18;letter-spacing:-.2px}
+    .lead{margin:0;color: var(--muted);line-height: var(--lh);max-width: 980px;font-size: 14.7px}
 
-    .grid{
-      margin-top:14px;
-      display:grid;
-      gap:12px;
-      grid-template-columns: 1fr;
-    }
+    .grid{margin-top:14px;display:grid;gap:12px;grid-template-columns: 1fr;}
     @media(min-width:1020px){ .grid{grid-template-columns: 360px 1fr;} }
 
     .side,.content{
@@ -152,12 +130,7 @@
       background: rgba(18,13,30,.56);
       box-shadow: 0 12px 28px rgba(0,0,0,.26);
     }
-    .side{
-      padding:14px;
-      position: sticky;
-      top: 70px;
-      height: fit-content;
-    }
+    .side{padding:14px;position: sticky;top: 70px;height: fit-content;}
     .side h3{
       margin:2px 0 10px;
       font-size:12px;
@@ -174,6 +147,7 @@
       color: rgba(245,246,250,.92);
       font-size: 13px;
       line-height: 1.25;
+      text-decoration:none;
     }
     .toc a:hover{border-color: rgba(124,58,237,.40)}
     .mini{
@@ -187,8 +161,8 @@
       line-height:1.55;
     }
     .mini b{color: rgba(245,246,250,.95)}
-
     .content{padding:14px}
+
     .section{
       border-radius: 16px;
       border:1px solid var(--line2);
@@ -196,21 +170,9 @@
       padding:14px;
       margin-bottom:12px;
     }
-    .section h2{
-      margin:0 0 10px;
-      font-size:18px;
-      color: rgba(167,139,250,.98);
-      letter-spacing:-.15px;
-    }
+    .section h2{margin:0 0 10px;font-size:18px;color: rgba(167,139,250,.98);letter-spacing:-.15px}
     .meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
-    .pill{
-      font-size:12px;
-      color: var(--muted);
-      padding:6px 10px;
-      border-radius: 999px;
-      border:1px solid var(--line2);
-      background: rgba(18,13,30,.35);
-    }
+    .pill{font-size:12px;color: var(--muted);padding:6px 10px;border-radius: 999px;border:1px solid var(--line2);background: rgba(18,13,30,.35)}
 
     .block{
       border-radius: var(--r2);
@@ -219,80 +181,27 @@
       padding:12px;
       margin-top:10px;
     }
-    .titleRow{display:flex;gap:10px;align-items:center;justify-content:space-between}
-    .tag{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:12px;
-      padding:6px 10px;
-      border-radius: 999px;
-      border:1px solid var(--line2);
-      color: var(--muted);
-      background: rgba(11,8,18,.18);
-    }
-    .tag .dot2{width:7px;height:7px;border-radius:999px;background: rgba(167,139,250,.85)}
-    .text{
-      color: var(--muted);
-      font-size:14px;
-      line-height: var(--lh);
-    }
+    .text{color: var(--muted);font-size:14px;line-height: var(--lh);}
     .text b{color: rgba(245,246,250,.96)}
     ul,ol{margin:8px 0 0 18px;padding:0}
     li{margin:6px 0}
     .hr{height:1px;background: var(--line2);margin:12px 0}
     .cols{display:grid;gap:10px;grid-template-columns:1fr}
     @media(min-width:900px){.cols{grid-template-columns:1fr 1fr}}
-    .callout{
-      border-radius: var(--r2);
-      border:1px solid var(--line2);
-      background: rgba(11,8,18,.22);
-      padding:12px;
-    }
+    .callout{border-radius: var(--r2);border:1px solid var(--line2);background: rgba(11,8,18,.22);padding:12px}
     .callout strong{color: rgba(245,246,250,.96)}
-    .bar{
-      height:8px;border-radius:999px;background: rgba(199,185,255,.10);
-      overflow:hidden;border:1px solid rgba(199,185,255,.12);
-    }
-    .bar > div{height:100%;width:0;background: linear-gradient(90deg, rgba(124,58,237,.95), rgba(167,139,250,.95));}
     .kbd{
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      font-size:12px;
-      padding:2px 6px;
-      border-radius:8px;
-      border:1px solid var(--line2);
-      background: rgba(11,8,18,.22);
-      color: rgba(245,246,250,.95);
+      font-size:12px;padding:2px 6px;border-radius:8px;border:1px solid var(--line2);
+      background: rgba(11,8,18,.22);color: rgba(245,246,250,.95);
     }
     .code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      font-size:12px;
-      white-space:pre-wrap;
-      word-break:break-word;
-      color: rgba(245,246,250,.95);
+      font-size:12px;white-space:pre-wrap;word-break:break-word;color: rgba(245,246,250,.95);
     }
     .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
-    .input{
-      width:100%;
-      padding:10px 10px;
-      border-radius:14px;
-      border:1px solid var(--line2);
-      background: rgba(11,8,18,.22);
-      color: rgba(245,246,250,.95);
-      outline:none;
-      font-size:14px;
-    }
     .hint{font-size:12px;color: var(--muted2);line-height:1.5;margin-top:6px}
-    mark{
-      background: rgba(124,58,237,.28);
-      color: rgba(245,246,250,.98);
-      padding: 0 2px;
-      border-radius: 6px;
-    }
-    .foot{
-      margin-top:14px;
-      font-size:12px;
-      color: var(--muted2);
-      line-height:1.6;
-    }
+    mark{background: rgba(124,58,237,.28);color: rgba(245,246,250,.98);padding: 0 2px;border-radius: 6px;}
   </style>
 </head>
 
@@ -325,12 +234,13 @@
         <span class="chip">Тесты по правилам</span>
         <span class="chip">Экономика с выкупом</span>
         <span class="chip">Шаблоны</span>
+        <span class="chip">Калькулятор в конце</span>
       </div>
 
       <h1>Клики есть, показы есть — а прибыли нет</h1>
       <p class="lead">
         На WB реклама усиливает то, что уже происходит в карточке и в ожиданиях покупателя.
-        Чтобы выйти в плюс, не нужно «угадывать настройки». Нужно найти, <b>на каком шаге</b> теряется результат:
+        Чтобы выйти в плюс, не нужно угадывать настройки. Нужно найти, <b>на каком шаге</b> теряется результат:
         <b>показы → клики → карточка → корзина → заказ → выкуп</b>, и последовательно улучшать один приоритет за раз.
       </p>
     </div>
@@ -352,34 +262,31 @@
           <a href="#s10">10) Масштабирование: когда трогать ставки</a>
           <a href="#s11">11) 7-дневный план (3 сценария)</a>
           <a href="#s12">12) Шаблоны: журнал тестов и гипотез</a>
-          <a href="#s13">13) Мини-калькулятор «потолка» по рекламе</a>
+          <a href="#s13">13) Калькулятор цены заказа</a>
         </div>
 
         <div class="mini">
-          <b>Правило гайда:</b> одно изменение → фиксация метрик → вывод. <br>
+          <b>Правило:</b> одно изменение → фиксация метрик → вывод. <br>
           Если менять всё одновременно, ты не узнаешь, что реально сработало.
         </div>
       </aside>
 
       <main class="content" id="content">
-        <!-- 0 -->
+
         <section class="section" id="s0">
           <h2>0) Быстрая диагностика: куда смотреть</h2>
           <div class="meta">
             <span class="pill">2 минуты</span>
-            <span class="pill">только по симптомам</span>
+            <span class="pill">по симптомам</span>
           </div>
 
           <div class="block">
-            <div class="titleRow">
-              <span class="tag"><span class="dot2"></span>Выбери свой симптом</span>
-            </div>
             <div class="text">
               <ul>
-                <li><b>CTR низкий</b> → проблема витрины: фото/цена/доверие. Иди в раздел <a href="#s3"><span class="kbd">3</span></a>.</li>
-                <li><b>Клики есть, корзины мало</b> → карточка не объясняет смысл и ценность. Иди в <a href="#s4"><span class="kbd">4</span></a>.</li>
-                <li><b>Корзины есть, заказов мало</b> → условия покупки: доставка/варианты/итоговая цена. Иди в <a href="#s5"><span class="kbd">5</span></a>.</li>
-                <li><b>Заказы есть, но реклама «съедает» маржу</b> → экономика + выкуп. Иди в <a href="#s6"><span class="kbd">6</span></a> и <a href="#s7"><span class="kbd">7</span></a>.</li>
+                <li><b>CTR низкий</b> → витрина: фото/цена/доверие. См. раздел <a href="#s3"><span class="kbd">3</span></a>.</li>
+                <li><b>Клики есть, корзины мало</b> → карточка: смысл первого экрана, конкретика, ответы на сомнения. См. <a href="#s4"><span class="kbd">4</span></a>.</li>
+                <li><b>Корзины есть, заказов мало</b> → условия покупки: доставка/наличие/итоговая цена. См. <a href="#s5"><span class="kbd">5</span></a>.</li>
+                <li><b>Заказы есть, но прибыль не сходится</b> → считать по выкупу и марже. См. <a href="#s7"><span class="kbd">7</span></a> и калькулятор <a href="#s13"><span class="kbd">13</span></a>.</li>
               </ul>
             </div>
           </div>
@@ -387,18 +294,17 @@
           <div class="cols">
             <div class="callout">
               <div class="text">
-                <strong>Мини-правило.</strong> Ставка не решает слабую карточку. Ставка ускоряет результат — как рост, так и минус.
+                <strong>Мини-правило.</strong> Ставка усиливает результат. Сначала — конверсия и доверие, потом — объём.
               </div>
             </div>
             <div class="callout">
               <div class="text">
-                <strong>Как быстро понять «проблема в карточке».</strong> Если человек кликнул, но не добавил в корзину — обычно он не увидел ценность или не поверил.
+                <strong>Быстрый сигнал.</strong> Если клики есть, а корзина слабая — человек не увидел ценность или не поверил.
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 1 -->
         <section class="section" id="s1">
           <h2>1) Воронка WB: что означает каждый шаг</h2>
           <div class="meta">
@@ -408,24 +314,23 @@
           <div class="block">
             <div class="text">
               <ul>
-                <li><b>Показы</b> — тебя увидели. Это не про интерес, это про присутствие в выдаче/лентах.</li>
-                <li><b>Клики (CTR)</b> — витрина убедила «открыть». Решают фото, цена, рейтинг, понятность.</li>
-                <li><b>Карточка</b> — за первые секунды человек должен понять: что это, для кого, почему стоит своих денег.</li>
-                <li><b>Корзина</b> — интерес стал намерением. Здесь важны конкретика и отсутствие «сомнений».</li>
-                <li><b>Заказ</b> — решение принято. Часто ломают доставка/наличие/итоговая цена.</li>
-                <li><b>Выкуп</b> — реальная экономика. Без выкупа «заказы» могут быть иллюзией прибыли.</li>
+                <li><b>Показы</b> — присутствие в выдаче/лентах.</li>
+                <li><b>Клики (CTR)</b> — витрина убедила открыть.</li>
+                <li><b>Карточка</b> — за секунды понятно: что это, кому, почему стоит своих денег.</li>
+                <li><b>Корзина</b> — интерес стал намерением.</li>
+                <li><b>Заказ</b> — решение принято, важны условия.</li>
+                <li><b>Выкуп</b> — реальная экономика.</li>
               </ul>
             </div>
           </div>
 
           <div class="callout" style="margin-top:10px">
             <div class="text">
-              <strong>Главная мысль:</strong> реклама не делает карточку лучше. Она быстрее показывает, где слабое место.
+              <strong>Главная мысль:</strong> реклама быстрее показывает слабое место. Поэтому начинать нужно с диагностики, а не со ставок.
             </div>
           </div>
         </section>
 
-        <!-- 2 -->
         <section class="section" id="s2">
           <h2>2) Источник трафика: поиск vs рекомендации</h2>
           <div class="meta">
@@ -435,33 +340,25 @@
 
           <div class="cols">
             <div class="block">
-              <div class="titleRow">
-                <span class="tag"><span class="dot2"></span>Поиск</span>
-              </div>
               <div class="text">
-                Люди уже ищут. Их логика: сравнить и выбрать.
+                <b>Поиск</b> — человек сравнивает и выбирает.
                 <div class="hr"></div>
-                <b>Что должно быть в витрине:</b>
                 <ul>
                   <li>понятно «что это» за 1 секунду;</li>
-                  <li>одно отличие от конкурентов (качество/комплект/функция);</li>
-                  <li>доверие: рейтинг/отзывы/визуальные доказательства.</li>
+                  <li>одно отличие от конкурентов;</li>
+                  <li>доверие: рейтинг/отзывы/доказательства на фото.</li>
                 </ul>
               </div>
             </div>
 
             <div class="block">
-              <div class="titleRow">
-                <span class="tag"><span class="dot2"></span>Рекомендации</span>
-              </div>
               <div class="text">
-                Люди листают. Их логика: зацепиться и понять быстро.
+                <b>Рекомендации</b> — человек листает, нужно зацепить быстро.
                 <div class="hr"></div>
-                <b>Что должно быть в витрине:</b>
                 <ul>
-                  <li>визуальный крючок (без перегруза);</li>
-                  <li>простая выгода (в одном сообщении);</li>
-                  <li>первый экран карточки закрывает вопрос «почему это стоит своих денег».</li>
+                  <li>визуальный крючок без перегруза;</li>
+                  <li>простая выгода в одном сообщении;</li>
+                  <li>первый экран карточки сразу закрывает «почему это стоит своих денег».</li>
                 </ul>
               </div>
             </div>
@@ -469,13 +366,11 @@
 
           <div class="callout" style="margin-top:10px">
             <div class="text">
-              <strong>Признак неправильной связки «источник → витрина»:</strong> кликов много, а корзины мало.
-              Решение: адаптировать фото/оффер под источник или сузить трафик (см. раздел 9).
+              <strong>Если кликов много, а корзина слабая:</strong> часто витрина не подходит под источник трафика или трафик нецелевой (см. раздел 9).
             </div>
           </div>
         </section>
 
-        <!-- 3 -->
         <section class="section" id="s3">
           <h2>3) CTR низкий: витрина (фото/цена/доверие)</h2>
           <div class="meta">
@@ -485,35 +380,34 @@
 
           <div class="block">
             <div class="text">
-              <b>Почему CTR падает чаще всего:</b>
+              <b>Причины:</b>
               <ul>
-                <li>неясно, что за товар (или видно слишком поздно);</li>
-                <li>ценность не видна — остаётся только сравнение по цене;</li>
-                <li>не хватает доверия (рейтинг/отзывы/детали/качество на фото).</li>
+                <li>неясно, что за товар;</li>
+                <li>ценность не видна → остаётся сравнение по цене;</li>
+                <li>не хватает доверия.</li>
               </ul>
 
               <div class="hr"></div>
 
-              <b>Проверка в 10 секунд:</b> открой выдачу и честно ответь:
+              <b>Проверка:</b>
               <ul>
                 <li>за 1 секунду понятно «что это»?</li>
                 <li>за 3 секунды понятно «в чём выгода»?</li>
-                <li>видно ли доказательство качества/комплекта/результата?</li>
+                <li>видно ли доказательство качества/комплекта?</li>
               </ul>
 
               <div class="hr"></div>
 
-              <b>Что делать (без воды):</b>
+              <b>Что делать:</b>
               <ul>
-                <li>сделай 2–3 версии главного фото под разные гипотезы: <b>выгода</b> / <b>качество-деталь</b> / <b>комплект</b>;</li>
-                <li>не меняй одновременно цену/ставки/описание — иначе вывод будет нечестный;</li>
-                <li>выбирай победителя не по «красивости», а по связке метрик (см. раздел 8).</li>
+                <li>2–3 версии главного фото под разные гипотезы: <b>выгода</b> / <b>качество-деталь</b> / <b>комплект</b>;</li>
+                <li>во время теста не менять цену/ставки/описание;</li>
+                <li>оценивать по связке метрик (см. раздел 8).</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <!-- 4 -->
         <section class="section" id="s4">
           <h2>4) Клики есть, корзины мало: первый экран и конкретика</h2>
           <div class="meta">
@@ -523,16 +417,16 @@
 
           <div class="block">
             <div class="text">
-              <b>Типовая причина:</b> человек открыл карточку и не понял, что именно получает и почему это лучше/выгоднее альтернатив.
-              <div class="hr"></div>
-              <b>Проверка (по факту):</b>
+              <b>Проверка:</b>
               <ul>
-                <li>первые 3–5 фото отвечают на основные вопросы покупателя в нише?</li>
-                <li>есть конкретика (материал/размер/комплект/детали/посадка), а не общие слова?</li>
-                <li>закрыто главное сомнение (качество, удобство, соответствие ожиданиям)?</li>
+                <li>первые 3–5 фото отвечают на основные вопросы покупателя?</li>
+                <li>есть конкретика (материал/размер/комплект/детали), а не общие слова?</li>
+                <li>закрыто главное сомнение (качество, соответствие ожиданиям)?</li>
               </ul>
+
               <div class="hr"></div>
-              <b>Решение (структура карточки):</b>
+
+              <b>Решение:</b>
               <ul>
                 <li><b>1 экран:</b> что это + для кого + одна выгода + 1–2 доказательства;</li>
                 <li><b>2–4 фото:</b> конкретика (материал/детали/размер/комплект);</li>
@@ -542,7 +436,6 @@
           </div>
         </section>
 
-        <!-- 5 -->
         <section class="section" id="s5">
           <h2>5) Корзины есть, заказов мало: условия покупки</h2>
           <div class="meta">
@@ -553,50 +446,43 @@
 
           <div class="block">
             <div class="text">
-              <b>Почему так бывает:</b> интерес есть, но на финальном шаге побеждают условия: сроки, наличие, сравнение с конкурентами.
-              <div class="hr"></div>
               <b>Проверка:</b>
               <ul>
                 <li>есть ключевые размеры/цвета в наличии?</li>
-                <li>сроки доставки в твоём регионе не хуже, чем у топ-конкурентов в выдаче?</li>
+                <li>сроки доставки не хуже, чем у топ-конкурентов?</li>
                 <li>цена соответствует ожиданию, которое сформировала витрина?</li>
               </ul>
+
               <div class="hr"></div>
+
               <b>Что делать:</b>
               <ul>
                 <li>стабилизировать наличие ключевых вариантов;</li>
-                <li>если цена выше — усилить доказательства ценности в первых экранах (раздел 4);</li>
-                <li>если сроки хуже — не покупать трафик «в лоб», пока это не исправлено.</li>
+                <li>если цена выше — усилить доказательства ценности в первых экранах;</li>
+                <li>если сроки заметно хуже — не увеличивать объём рекламы, пока это не исправлено.</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <!-- 6 -->
         <section class="section" id="s6">
           <h2>6) Заказы есть, но «дорого»: как вернуть экономику</h2>
           <div class="meta">
-            <span class="pill">прибыль важнее метрик</span>
-            <span class="pill">связка показателей</span>
+            <span class="pill">связка метрик</span>
+            <span class="pill">прибыль важнее CTR/CPC</span>
           </div>
 
           <div class="block">
             <div class="text">
-              <b>Нельзя оценивать рекламу по одной цифре.</b> Смотри цепочку:
+              Смотри цепочку:
               <div class="hr"></div>
               <div class="code">CTR → CPC → корзина/клик → заказ/клик → выкуп</div>
               <div class="hr"></div>
-              <b>Приоритет действий:</b>
-              <ul>
-                <li>сначала улучшить конверсию на слабом шаге (разделы 3–5);</li>
-                <li>потом считать реальную стоимость заказа с выкупом (раздел 7);</li>
-                <li>и только затем думать о масштабировании (раздел 10).</li>
-              </ul>
+              <b>Приоритет:</b> сначала улучшить слабый шаг (разделы 3–5), затем проверить экономику с выкупом (раздел 7 и калькулятор).
             </div>
           </div>
         </section>
 
-        <!-- 7 -->
         <section class="section" id="s7">
           <h2>7) Выкуп: как считать реальную стоимость заказа</h2>
           <div class="meta">
@@ -605,18 +491,16 @@
 
           <div class="block">
             <div class="text">
-              Если выкуп низкий, «заказы» могут выглядеть хорошо, а прибыль — отсутствовать.
-              <div class="hr"></div>
               <b>Формулы:</b>
+              <div class="hr"></div>
               <div class="code">Стоимость заказа = расход / заказы
 Стоимость выкупленного заказа = расход / (заказы × выкуп)</div>
               <div class="hr"></div>
-              <b>Вывод:</b> если стоимость выкупленного заказа выше маржи — реклама экономически не сходится.
+              Если стоимость выкупленного заказа выше маржи — реклама экономически не сходится.
             </div>
           </div>
         </section>
 
-        <!-- 8 -->
         <section class="section" id="s8">
           <h2>8) A/B тест главного фото: протокол без ошибок</h2>
           <div class="meta">
@@ -626,48 +510,43 @@
 
           <div class="block">
             <div class="text">
-              <b>Правила:</b>
               <ul>
                 <li>меняем только главное фото;</li>
-                <li>не трогаем цену/ставки/описание/остатки во время теста;</li>
-                <li>сравниваем при одинаковом времени/объёме показов.</li>
+                <li>не меняем цену/ставки/описание/остатки во время теста;</li>
+                <li>сравниваем в одинаковые часы и по сопоставимому объёму.</li>
               </ul>
               <div class="hr"></div>
-              <b>Как выбрать победителя:</b> не только CTR, а экономику:
-              <div class="code">CTR → CPC → корзина/клик → заказ/клик</div>
+              Победитель — тот, кто улучшает экономику: <b>CTR → CPC → корзина/клик → заказ/клик</b>.
             </div>
           </div>
         </section>
 
-        <!-- 9 -->
         <section class="section" id="s9">
           <h2>9) Нецелевой трафик: признаки и корректировка</h2>
           <div class="meta">
             <span class="pill">клики ≠ покупки</span>
             <span class="pill">сужение</span>
-            <span class="pill">адаптация под источник</span>
           </div>
 
           <div class="block">
             <div class="text">
               <b>Признаки:</b>
               <ul>
-                <li>кликов много, а корзина/клик низкая;</li>
-                <li>корзины есть, но заказов мало без проблем в условиях (раздел 5);</li>
-                <li>трафик «любит смотреть», но не покупать.</li>
+                <li>кликов много, корзина/клик низкая;</li>
+                <li>корзины есть, но заказов мало без проблем в условиях покупки;</li>
+                <li>в рекомендациях кликают «посмотреть», но не покупают.</li>
               </ul>
               <div class="hr"></div>
               <b>Что делать:</b>
               <ul>
-                <li>сузить запросы/сегменты до «покупательских»;</li>
+                <li>сузить запросы/сегменты до покупательских;</li>
                 <li>адаптировать витрину под источник (раздел 2);</li>
-                <li>убрать «всё для всех»: один товар → один понятный сценарий покупки.</li>
+                <li>оставить один понятный сценарий покупки.</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <!-- 10 -->
         <section class="section" id="s10">
           <h2>10) Масштабирование: когда трогать ставки</h2>
           <div class="meta">
@@ -679,49 +558,48 @@
             <div class="text">
               Повышать ставки имеет смысл, когда:
               <ul>
-                <li>витрина даёт стабильный CTR (раздел 3);</li>
-                <li>карточка держит корзину/клик (раздел 4);</li>
-                <li>экономика сходится по выкупу (раздел 7 и калькулятор ниже).</li>
+                <li>витрина даёт стабильный CTR;</li>
+                <li>карточка держит корзину/клик;</li>
+                <li>экономика сходится по выкупу (раздел 7) и по калькулятору (раздел 13).</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <!-- 11 -->
         <section class="section" id="s11">
           <h2>11) 7-дневный план (3 сценария)</h2>
           <div class="meta">
             <span class="pill">короткие циклы</span>
-            <span class="pill">понятные шаги</span>
+            <span class="pill">1 гипотеза за раз</span>
           </div>
 
           <div class="cols">
             <div class="block">
-              <div class="titleRow"><span class="tag"><span class="dot2"></span>Сценарий A: CTR низкий</span></div>
               <div class="text">
+                <b>Сценарий A: CTR низкий</b>
                 <ul>
                   <li>Д1–Д3: 2–3 версии главного фото → тест по протоколу.</li>
-                  <li>Д4: закрепить победителя, ничего лишнего не менять.</li>
-                  <li>Д5–Д7: усилить первый экран карточки и доверие.</li>
+                  <li>Д4: закрепить победителя.</li>
+                  <li>Д5–Д7: усилить первый экран и доверие.</li>
                 </ul>
               </div>
             </div>
 
             <div class="block">
-              <div class="titleRow"><span class="tag"><span class="dot2"></span>Сценарий B: корзина/клик низкая</span></div>
               <div class="text">
+                <b>Сценарий B: корзина/клик низкая</b>
                 <ul>
                   <li>Д1–Д2: перестроить первые 3–5 фото по структуре (раздел 4).</li>
-                  <li>Д3–Д7: тестировать по одной гипотезе (конкретика/возражение/комплект).</li>
+                  <li>Д3–Д7: тестировать по одной гипотезе.</li>
                 </ul>
               </div>
             </div>
 
             <div class="block">
-              <div class="titleRow"><span class="tag"><span class="dot2"></span>Сценарий C: экономика ломается выкупом</span></div>
               <div class="text">
+                <b>Сценарий C: экономика ломается выкупом</b>
                 <ul>
-                  <li>Д1: найти разрыв ожиданий (что обещает витрина vs что получает человек).</li>
+                  <li>Д1: найти разрыв ожиданий.</li>
                   <li>Д2–Д4: добавить доказательства качества/деталей/комплекта.</li>
                   <li>Д5–Д7: стабилизировать и только потом увеличивать объём.</li>
                 </ul>
@@ -730,13 +608,11 @@
           </div>
         </section>
 
-        <!-- 12 -->
         <section class="section" id="s12">
           <h2>12) Шаблоны: журнал тестов и гипотез</h2>
           <div class="meta">
             <span class="pill">копируй</span>
             <span class="pill">фиксируй</span>
-            <span class="pill">делай выводы честно</span>
           </div>
 
           <div class="block">
@@ -748,7 +624,7 @@
 Вывод (оставляю / откатываю / повторяю):</div>
             <div class="row">
               <button class="btn" id="copyJournal">Скопировать журнал</button>
-              <span class="hint">Один тест = одно изменение. Иначе вывод не будет точным.</span>
+              <span class="hint">Один тест = одно изменение.</span>
             </div>
           </div>
 
@@ -761,50 +637,38 @@
           </div>
         </section>
 
-        <!-- 13 -->
+        <!-- Новый раздел с внешним калькулятором -->
         <section class="section" id="s13">
-          <h2>13) Мини-калькулятор «потолка» по рекламе</h2>
+          <h2>13) Калькулятор цены заказа (встроен в гайд)</h2>
           <div class="meta">
-            <span class="pill">ориентир по экономике</span>
-            <span class="pill">с учётом выкупа</span>
+            <span class="pill">онлайн</span>
+            <span class="pill">с телефона и ПК</span>
           </div>
 
-          <div class="cols">
-            <div class="block">
-              <div class="text"><b>Ввод</b></div>
-              <div class="row">
-                <div style="flex:1;min-width:220px">
-                  <div class="hint">Маржа на 1 выкуп (₽)</div>
-                  <input class="input" id="margin" type="number" value="450" />
-                </div>
-                <div style="flex:1;min-width:220px">
-                  <div class="hint">Выкуп (%)</div>
-                  <input class="input" id="buyout" type="number" value="60" />
-                </div>
-              </div>
-              <div class="row">
-                <div style="flex:1;min-width:220px">
-                  <div class="hint">Конверсия клик→заказ (%)</div>
-                  <input class="input" id="cr" type="number" value="2" />
-                </div>
-              </div>
-              <div class="hint">Это ориентир. Если потолок слишком низкий — задача в конверсии/выкупе, а не в “настройке ставок”.</div>
+          <div class="block">
+            <div class="text">
+              Используй калькулятор, чтобы быстро посчитать экономику заказа и понять, какие параметры влияют на итоговую прибыль.
             </div>
 
-            <div class="block">
-              <div class="text"><b>Результат</b></div>
-              <div class="hr"></div>
-              <div class="text" id="calcOut"></div>
-              <div class="hr"></div>
-              <div class="bar" aria-hidden="true"><div id="barFill"></div></div>
-              <div class="hint">Шкала показывает, насколько комфортный потолок CPC при текущих вводных.</div>
-            </div>
-          </div>
+            <div class="hr"></div>
 
-          <div class="foot">
-            Этот гайд — один файл <span class="kbd">index.html</span>. Его можно читать онлайн с телефона и компьютера.
+            <div style="border-radius:14px; overflow:hidden; border:1px solid var(--line2); background: rgba(11,8,18,.18);">
+              <iframe
+                src="https://chikalov966-del.github.io/cenazakaza/"
+                style="width:100%; height: 980px; border:0; display:block;"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                title="Калькулятор цены заказа"
+              ></iframe>
+            </div>
+
+            <div class="hint">
+              Если у кого-то не открывается внутри страницы, можно открыть в новой вкладке:
+              <a href="https://chikalov966-del.github.io/cenazakaza/" target="_blank" rel="noopener" style="text-decoration:underline">перейти к калькулятору</a>.
+            </div>
           </div>
         </section>
+
       </main>
     </div>
   </div>
@@ -883,7 +747,7 @@
       const summary =
 `WB — быстрая диагностика:
 1) CTR низкий → фото/цена/доверие (витрина).
-2) Клики есть, корзины мало → 1 экран, конкретика, ответы на сомнения.
+2) Клики есть, корзины мало → первый экран, конкретика, ответы на сомнения.
 3) Корзины есть, заказов мало → доставка, наличие, итоговая цена.
 4) Заказы есть, но прибыль не сходится → считать по выкупу и марже.
 Правило: 1 тест = 1 изменение.`;
@@ -897,53 +761,6 @@
       copyText(document.getElementById('copyHyp'), document.getElementById('hypTpl').innerText);
     });
 
-    // Calculator
-    const margin = document.getElementById('margin');
-    const buyout = document.getElementById('buyout');
-    const cr = document.getElementById('cr');
-    const out = document.getElementById('calcOut');
-    const barFill = document.getElementById('barFill');
-
-    function n(v){ const x = Number(v); return isFinite(x) ? x : 0; }
-    function fmt(x){ return Math.round(x).toLocaleString('ru-RU'); }
-
-    // Ceiling logic:
-    // 100 clicks -> orders = CR%
-    // buyouts = orders * buyout%
-    // max ad spend per 100 clicks = buyouts * margin
-    // max CPC = max spend / 100
-    function calc(){
-      const m = n(margin.value);
-      const b = n(buyout.value) / 100;
-      const c = n(cr.value) / 100;
-
-      const ordersPer100 = 100 * c;
-      const buyoutsPer100 = ordersPer100 * b;
-      const maxSpendPer100Clicks = buyoutsPer100 * m;
-      const maxCPC = maxSpendPer100Clicks / 100;
-
-      // Visual bar (0..60 as "comfortable scale")
-      const pct = Math.max(0, Math.min(100, (maxCPC / 60) * 100));
-      barFill.style.width = pct.toFixed(0) + "%";
-
-      let comment = "";
-      if(maxCPC <= 0) comment = "Введи маржу, выкуп и конверсию.";
-      else if(maxCPC < 15) comment = "Потолок CPC низкий: без роста конверсии/выкупа реклама почти всегда будет неэффективной.";
-      else if(maxCPC < 35) comment = "Нормальный потолок: основной эффект даст улучшение витрины и первого экрана карточки.";
-      else comment = "Потолок высокий: можно увеличивать объём, если конверсия и выкуп стабильны.";
-
-      out.innerHTML = `
-        <b>Ориентиры по введённым данным:</b><br>
-        • Заказов на 100 кликов: <b>${ordersPer100.toFixed(1)}</b><br>
-        • Выкупленных на 100 кликов: <b>${buyoutsPer100.toFixed(1)}</b><br><br>
-        <b>Потолок по рекламе (в ноль по марже):</b><br>
-        • CPC: <b>${fmt(maxCPC)} ₽</b><br><br>
-        <span style="color: rgba(199,185,255,.78)">${comment}</span>
-      `;
-    }
-
-    [margin, buyout, cr].forEach(el=>el.addEventListener('input', calc));
-    calc();
     filter('');
   </script>
 </body>
